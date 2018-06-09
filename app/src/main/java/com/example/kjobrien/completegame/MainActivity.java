@@ -12,20 +12,16 @@ import java.security.SecureRandom;
 public class MainActivity extends AppCompatActivity {
 
     private static final SecureRandom secureRandomNumbers = new SecureRandom();
-
-    private enum Status { NOTSTARTEDYET, PROCEED, WON, LOST }; //Integer Constants
-
-
     private static final int TIGER_CLAWS = 2;
+
+     //Integer Constants
     private static final int TREE = 3;
     private static final int CEVEN = 7;
     private static final int WE_LEVEN = 11;
     private static final int PANTHER = 12;
-
     TextView txtCalculations;
     ImageView imgDice;
     Button btnRestartGame;
-
     String oldTxtCalculationsValue = "";
     boolean firstTime = true;
     Status gameStatus = Status.NOTSTARTEDYET;
@@ -39,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         txtCalculations = (TextView) findViewById(R.id.txtCalculations);
         imgDice = (ImageView) findViewById(R.id.imgDice);
         btnRestartGame = (Button) findViewById(R.id.btnRestartTheGame);
-        final TextView txtGameStatus = (TextView)findViewById(R.id.txtGameStatus);
+        final TextView txtGameStatus = (TextView) findViewById(R.id.txtGameStatus);
 
         makeBtnRestartInvisible();
 
@@ -83,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         case 10:
                             gameStatus = Status.PROCEED;
                             points = diceSum;
-                            txtGameStatus.setText(oldTxtCalculationsValue + "Your Point is: " + points + "\n" );
+                            txtGameStatus.setText(oldTxtCalculationsValue + "Your Point is: " + points + "\n");
                             txtGameStatus.setText("Continue the Game!");
                             oldTxtCalculationsValue = "Your Point is " + points + "\n";
                             break;
@@ -94,24 +90,42 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
+
                 if (gameStatus == Status.PROCEED) {
 
-                     int diceSum = letsRollTheDice();
-                     if(diceSum == points) {
-                         gameStatus = Status.WON;
-                         txtGameStatus.setText("You Won!");
-                         makeImgDiceInvisible();
-                         makeBtnRestartVisible();                             }
-                } 
+                    int diceSum = letsRollTheDice();
+                    if (diceSum == points) {
+                        gameStatus = Status.WON;
+                        txtGameStatus.setText("You Won! :)");
+                        makeImgDiceInvisible();
+                        makeBtnRestartVisible();
+                    } else if (diceSum == CEVEN) {
+                        gameStatus = Status.LOST;
+                        txtGameStatus.setText("You Lost :(");
+                        makeImgDiceInvisible();
+                        makeBtnRestartVisible();
+                    }
 
 
+                }
 
 
             }
         });
 
+        btnRestartGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                gameStatus = Status.NOTSTARTEDYET;
+                txtGameStatus.setText("");
+                txtCalculations.setText("");
+                oldTxtCalculationsValue = "";
+                makeImgDiceVisible();
+                makeBtnRestartVisible();
 
+            }
+        });
 
 
     }
@@ -149,10 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
+    private enum Status {NOTSTARTEDYET, PROCEED, WON, LOST}
 
 
 }
