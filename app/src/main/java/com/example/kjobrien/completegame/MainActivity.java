@@ -71,12 +71,13 @@ public class MainActivity extends AppCompatActivity {
                             makeBtnRestartVisible();
                             break;
 
-                        case 4:
+                        /* case 4:
                         case 5:
                         case 6:
                         case 8:
                         case 9:
-                        case 10:
+                        case 10: */
+                        default:
                             gameStatus = Status.PROCEED;
                             points = diceSum;
                             txtGameStatus.setText(oldTxtCalculationsValue + "Your Point is: " + points + "\n");
@@ -158,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
         txtCalculations.setText(String.format(oldTxtCalculationsValue + " You Rolled %d + %d = %d%n",
                 randDie1, randDie2, sum));
+
         return sum;
 
 
