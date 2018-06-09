@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
                         case TIGER_CLAWS:
                         case TREE:
-                        case  PANTHER:
+                        case PANTHER:
                             gameStatus = Status.LOST;
                             txtGameStatus.setText("You Lost :(");
                             makeImgDiceInvisible();
@@ -93,6 +93,19 @@ public class MainActivity extends AppCompatActivity {
                     return;
 
                 }
+
+                if (gameStatus == Status.PROCEED) {
+
+                     int diceSum = letsRollTheDice();
+                     if(diceSum == points) {
+                         gameStatus = Status.WON;
+                         txtGameStatus.setText("You Won!");
+                         makeImgDiceInvisible();
+                         makeBtnRestartVisible();                             }
+                } 
+
+
+
 
             }
         });
