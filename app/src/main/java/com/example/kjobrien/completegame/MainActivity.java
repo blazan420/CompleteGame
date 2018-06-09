@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         txtCalculations = (TextView) findViewById(R.id.txtCalculations);
         imgDice = (ImageView) findViewById(R.id.imgDice);
         btnRestartGame = (Button) findViewById(R.id.btnRestartTheGame);
-        TextView txtGameStatus = (TextView)findViewById(R.id.txtGameStatus);
+        final TextView txtGameStatus = (TextView)findViewById(R.id.txtGameStatus);
 
         makeBtnRestartInvisible();
 
@@ -53,6 +53,44 @@ public class MainActivity extends AppCompatActivity {
                 if (gameStatus == Status.NOTSTARTEDYET) {
 
                     int diceSum = letsRollTheDice();
+                    oldTxtCalculationsValue = txtCalculations.getText().toString();
+                    points = 0;
+
+                    switch (diceSum) {
+
+                        case CEVEN:
+                        case WE_LEVEN:
+                            gameStatus = Status.WON;
+                            txtGameStatus.setText("You Win!!");
+                            makeImgDiceInvisible();
+                            makeBtnRestartVisible();
+                            break;
+
+                        case TIGER_CLAWS:
+                        case TREE:
+                        case  PANTHER:
+                            gameStatus = Status.LOST;
+                            txtGameStatus.setText("You Lost :(");
+                            makeImgDiceInvisible();
+                            makeBtnRestartVisible();
+                            break;
+
+                        case 4:
+                        case 5:
+                        case 6:
+                        case 8:
+                        case 9:
+                        case 10:
+                            gameStatus = Status.PROCEED;
+                            points = diceSum;
+                            txtGameStatus.setText(oldTxtCalculationsValue + "Your Point is: " + points + "\n" );
+                            txtGameStatus.setText("Continue the Game!");
+                            oldTxtCalculationsValue = "Your Point is " + points + "\n";
+                            break;
+
+                    }
+
+                    return;
 
                 }
 
