@@ -41,16 +41,60 @@ public class MainActivity extends AppCompatActivity {
         btnRestartGame = (Button) findViewById(R.id.btnRestartTheGame);
         TextView txtGameStatus = (TextView)findViewById(R.id.txtGameStatus);
 
+        makeBtnRestartInvisible();
+
+        txtGameStatus.setText("");
+        txtCalculations.setText("");
+
+        imgDice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (gameStatus == Status.NOTSTARTEDYET) {
+
+                    int diceSum = letsRollTheDice();
+
+                }
+
+            }
+        });
+
+
+
+
 
     }
 
-    private  void makeImgDiceInvisible() {
+    private void makeImgDiceInvisible() {
 
         imgDice.setVisibility(View.INVISIBLE);
 
     }
 
-    private  void makeBtnRestartInvisible() {
+    private void makeBtnRestartInvisible() {
+
+        btnRestartGame.setVisibility(View.INVISIBLE);
+
+    }
+
+    private void makeImgDiceVisible() {
+        imgDice.setVisibility(View.VISIBLE);
+    }
+
+    private void makeBtnRestartVisible() {
+        btnRestartGame.setVisibility(View.VISIBLE);
+    }
+
+    private int letsRollTheDice() {
+
+        int randDie1 = 1 + secureRandomNumbers.nextInt(6);
+        int randDie2 = 1 + secureRandomNumbers.nextInt(6);
+        int sum = randDie1 + randDie2;
+
+        txtCalculations.setText(String.format(oldTxtCalculationsValue + " You Rolled %d + %d = %d%n",
+                randDie1, randDie2, sum));
+        return sum;
+
 
     }
 
