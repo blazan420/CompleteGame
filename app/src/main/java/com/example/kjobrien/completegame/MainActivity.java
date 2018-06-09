@@ -2,6 +2,7 @@ package com.example.kjobrien.completegame;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     TextView txtCalculations;
     ImageView imgDice;
     Button btnRestartGame;
+
     String oldTxtCalculationsValue = "";
     boolean firstTime = true;
     Status gameStatus = Status.NOTSTARTEDYET;
@@ -35,7 +37,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         txtCalculations = (TextView) findViewById(R.id.txtCalculations);
+        imgDice = (ImageView) findViewById(R.id.imgDice);
+        btnRestartGame = (Button) findViewById(R.id.btnRestartTheGame);
+        TextView txtGameStatus = (TextView)findViewById(R.id.txtGameStatus);
 
 
     }
+
+    private  void makeImgDiceInvisible() {
+
+        imgDice.setVisibility(View.INVISIBLE);
+
+    }
+
+    private  void makeBtnRestartInvisible() {
+
+    }
+
+
+
+
+
+
+
 }
