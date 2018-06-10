@@ -39,12 +39,18 @@ public class MainActivity extends AppCompatActivity {
 
         makeBtnRestartInvisible();
 
-        txtGameStatus.setText("");
-        txtCalculations.setText("");
+        //txtGameStatus.setText("");
+        //txtCalculations.setText("");
 
         imgDice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (firstTime) {
+                    txtGameStatus.setText("");
+                    txtCalculations.setText("");
+                    firstTime = false;
+                }
 
                 if (gameStatus == Status.NOTSTARTEDYET) {
 
