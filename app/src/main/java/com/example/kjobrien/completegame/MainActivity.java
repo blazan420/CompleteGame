@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
                         case 5:
                         case 6:
                         case 8:
-                        case 9:
-                        case 10: */
+                        case 9: */
+                        //case 10:  or */
                         default:
                             gameStatus = Status.PROCEED;
                             points = diceSum;
